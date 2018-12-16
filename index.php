@@ -1,4 +1,4 @@
-﻿<?php include "fonksiyon.php";?>
+<?php include "fonksiyon.php";?>
 <html>
 <head>
 <title>Mert Hafriyat</title>
@@ -132,10 +132,11 @@ baglantilar
   <ul>
     <li><a href="http://www.gmail.com">gmail.com</a></li>
     <li><?php
-$site = "http://www.mgm.gov.tr/mobile/tahmin-il-ve-ilceler.aspx?m=EDREMIT";
+$site = "https://weather.com/weather/today/l/TUXX8626:1:TU";
 $icerik = file_get_contents($site);
-$alt_sicaklik = ara('class="minS">', '</td>', $icerik);
-$ust_sicaklik = ara('class="maxS">', '</td>', $icerik);
+$alt_sicaklik = ara('<div class="today_nowcard-temp"><span class="">','<sup>', $icerik);
+$alt_sicaklik[0]=round(($alt_sicaklik[0]-32)/1.8);
+$ust_sicaklik = ara('<div class="today_nowcard-phrase">', '</div>', $icerik);
 echo '<br><a href="http://www.mgm.gov.tr">hava durumu</a><br>edremit: ' . $ust_sicaklik[0] . '/' . $alt_sicaklik[0];
 ?></li><br>
 <div id="yaz"><input type="text" id="do" value="0"></input><input type="text" id="eu" value="0"></input></div>
